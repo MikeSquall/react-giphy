@@ -1,5 +1,24 @@
 import React, { Component } from 'react';
+import Loading from './Loading'
 // import '../css/Navbar.css';
+
+class RefreshButton extends Component {
+  handleClick() {
+    if (!this.props.action) return <div class="alert alert-info" role="alert">Reloading</div>
+    console.log('click handled !!')
+    return this.props.action
+  }
+
+  render() {
+    return (
+      <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul className="nav navbar-nav navbar-right">
+          <li><a href="#" onClick={this.handleClick.bind(this)}>Refresh <span className="sr-only">(current)</span></a></li>
+        </ul>
+      </div>
+    )
+  }
+}
 
 class Navbar extends Component {
   render() {
@@ -18,11 +37,7 @@ class Navbar extends Component {
               <a className="navbar-brand" href="#">Gifalicious Trucks</a>
             </div>
 
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul className="nav navbar-nav navbar-right">
-                <li><a href="#">Refresh <span className="sr-only">(current)</span></a></li>
-              </ul>
-            </div>
+            <RefreshButton action={this.props.refresh}/>
           </div>
         </nav>
       </div>

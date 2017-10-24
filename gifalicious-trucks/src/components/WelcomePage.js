@@ -18,31 +18,35 @@ class WelcomePage extends Component {
     }
   }
 
-  componentDidMount() {
+  fetchUrl() {
     fetch(urlForLatestGifs())
-        .then(response => {
-          if (!response.ok) {
-            throw Error("Network request failed")
-          }
-          return response
+      .then(response => {
+        if (!response.ok) {
+          throw Error("Network request failed")
+        }
+        return response
+      })
+      .then(d => d.json())
+      .then(d => {
+        this.setState({
+          gifList: d
         })
-        .then(d => d.json())
-        .then(d => {
-          this.setState({
-              gifList: d
-          })
-        }, () => {
-          this.setState({
-              requestFailed: true
-          })
+      }, () => {
+        this.setState({
+          requestFailed: true
         })
+      })
+  }
+
+  componentDidMount() {
+    this.fetchUrl()
   }
 
   render() {
     if (this.state.requestFailed) return <p>Something went wrong ! Please reload or try again later</p>
     return (
       <div id="welcomePage">
-        <Navbar />
+        <Navbar refresh={this.fetchUrl()}/>
         <Title title={this.state.title} />
         <GifList gifList={this.state.gifList} />
       </div>
