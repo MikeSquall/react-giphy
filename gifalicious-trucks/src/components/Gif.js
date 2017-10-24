@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import DetailedGif from './DetailedGif'
 
 class Gif extends Component {
   render() {
     return (
-      <div id="gif" className="col-md-3">
-        <a href="#" className="thumbnail">
-          <img src={this.props.url} alt={this.props.alt} />
-          <div className="caption">
-            <p>{this.props.alt}</p>
+      <div>
+        <div id="gif" className="col-md-3" data-toggle="modal" data-target="#detailedGif">
+          <div className="thumbnail">
+            <img src={this.props.url} alt={this.props.title} />
           </div>
-        </a>
+        </div>
+        <DetailedGif id="detailedGif" title={this.props.title} src={this.props.url}/>
       </div>
     );
   }
