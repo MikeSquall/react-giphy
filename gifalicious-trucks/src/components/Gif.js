@@ -1,16 +1,27 @@
 import React, { Component } from 'react'
 import DetailedGif from './DetailedGif'
+import '../css/Gif.css';
 
 class Gif extends Component {
   render() {
+    const data = this.props.data
+    const id = data.id
+    const target = '#'.concat(id)
+    const src = data.images.fixed_height.url
+    const modal_src = data.images.original.url
+    const title = data.title != undefined ? data.title : data.slug
+
     return (
       <div>
-        <div id="gif" className="col-md-3" data-toggle="modal" data-target="#detailedGif">
+        <div className="col-md-4 gif" data-toggle="modal" data-target={target}>
           <div className="thumbnail">
-            <img src={this.props.url} alt={this.props.title} />
+            <img src={src} alt={title} />
+            <div className="caption">
+              <p>{title}</p>
+            </div>
           </div>
         </div>
-        <DetailedGif id="detailedGif" title={this.props.title} src={this.props.url}/>
+        <DetailedGif id={id} title={title} src={modal_src}/>
       </div>
     );
   }
