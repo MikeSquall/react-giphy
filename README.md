@@ -1,4 +1,4 @@
-# Truckfly Frontend Interview
+Exercise
 
 ## Goal
 
