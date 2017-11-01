@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import data from '../config'
+import { api_key } from '../config.js'
 import Navbar from './Navbar'
 import Title from './Title'
 import GifList from './GifList'
 
-const api_key = data.api_key
+const key = api_key() ;
 
 const urlForLatestGifs = latestGifs =>
-  'http://api.giphy.com/v1/gifs/search?q=truck&api_key=' + api_key + '&limit=24&sort=recent'
+  `http://api.giphy.com/v1/gifs/search?q=truck&api_key=${key}&limit=24&sort=recent` ;
 
 class WelcomePage extends Component {
   constructor(props) {
